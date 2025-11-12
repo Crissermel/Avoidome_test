@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Workflow outputs
+fasta_files/
+02_similarity_search/
+logs/
+results_*/
+workflow_results.csv
+comprehensive_protein_report.csv
+summary_protein_report.csv
+*.log
+
+# Step 1 outputs
+avoidome_proteins_combined.fasta
+avoidome_sequences.csv
+input_preparation_summary.txt
+
+# Step 4 outputs
+protein_list_all_unique.csv
+umap_plots/
+
+# Data files (if sensitive)
+# Uncomment if data should not be tracked
+# data/*.csv
+
+# Cache directories
+esmc_descriptors_cache/
+fingerprints/
+*.pkl
+*.pkl.gz
+*.parquet
+*.cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Config (if contains sensitive paths)
+# config.yaml
+
+# Temporary files
+*.tmp
+*.temp
+
