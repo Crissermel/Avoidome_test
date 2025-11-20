@@ -1,0 +1,14 @@
+artifact_uri: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/35f533ac7d574f7296010ad3f82f3fc9/artifacts
+end_time: 1763564219031
+entry_point_name: ''
+experiment_id: '753783880439027731'
+lifecycle_stage: active
+run_id: 35f533ac7d574f7296010ad3f82f3fc9
+run_name: HSD11B1_P28845_B_low
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763564165297
+status: 3
+tags: []
+user_id: serramelendezcsm

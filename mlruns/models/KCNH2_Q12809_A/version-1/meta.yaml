@@ -1,0 +1,15 @@
+creation_timestamp: 1763564451782
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763564451782
+model_id: m-c3f1ce061f3743c7bc01444bcf4d96ce
+name: KCNH2_Q12809_A
+run_id: eb349ffcb4f5469d8a160d4627331aaa
+run_link: null
+source: models:/m-c3f1ce061f3743c7bc01444bcf4d96ce
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-c3f1ce061f3743c7bc01444bcf4d96ce/artifacts
+user_id: null
+version: 1

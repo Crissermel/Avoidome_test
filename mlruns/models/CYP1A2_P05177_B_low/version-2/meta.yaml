@@ -1,0 +1,15 @@
+creation_timestamp: 1763567862308
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763567862308
+model_id: m-4f518cfe3bf840e78362e1e420a32d82
+name: CYP1A2_P05177_B_low
+run_id: d23b1ecfecef4f4099efa57ce208d96a
+run_link: null
+source: models:/m-4f518cfe3bf840e78362e1e420a32d82
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-4f518cfe3bf840e78362e1e420a32d82/artifacts
+user_id: null
+version: 2

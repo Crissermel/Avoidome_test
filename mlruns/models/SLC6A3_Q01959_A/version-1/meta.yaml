@@ -1,0 +1,15 @@
+creation_timestamp: 1763574287765
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763574287765
+model_id: m-65660fa5143549ae8e3994f579a2ac41
+name: SLC6A3_Q01959_A
+run_id: 44dac58d504047a08011a03f7d5aab9d
+run_link: null
+source: models:/m-65660fa5143549ae8e3994f579a2ac41
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-65660fa5143549ae8e3994f579a2ac41/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,15 @@
+creation_timestamp: 1763578250351
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763578250351
+model_id: m-a7c65482556d46f1a6b3b82941eaacca
+name: ADRA2A_P08913_B_medium
+run_id: 817011e998ef4f13ab09e285746d2b77
+run_link: null
+source: models:/m-a7c65482556d46f1a6b3b82941eaacca
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-a7c65482556d46f1a6b3b82941eaacca/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,15 @@
+creation_timestamp: 1763575094393
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763575094393
+model_id: m-3d320111863647d5aaa7f2f95abdeb1a
+name: SLC6A2_P23975_B_low
+run_id: 919ed12acf384172af09278d9cf03b5a
+run_link: null
+source: models:/m-3d320111863647d5aaa7f2f95abdeb1a
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-3d320111863647d5aaa7f2f95abdeb1a/artifacts
+user_id: null
+version: 1

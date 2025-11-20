@@ -1,0 +1,15 @@
+creation_timestamp: 1763592414938
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763592414938
+model_id: m-f6dd2e24f34f40ad971716f56ac80ba0
+name: CNR2_P34972_A
+run_id: 6782a0a146804e59a328b25bc113a5e8
+run_link: null
+source: models:/m-f6dd2e24f34f40ad971716f56ac80ba0
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-f6dd2e24f34f40ad971716f56ac80ba0/artifacts
+user_id: null
+version: 1

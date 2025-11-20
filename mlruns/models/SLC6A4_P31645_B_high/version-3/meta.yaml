@@ -1,0 +1,15 @@
+creation_timestamp: 1763573357491
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763573357491
+model_id: m-6d6cbb358145498ea4139af3583d5cf7
+name: SLC6A4_P31645_B_high
+run_id: 4263a6742c1044bd93be180abb0c7196
+run_link: null
+source: models:/m-6d6cbb358145498ea4139af3583d5cf7
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-6d6cbb358145498ea4139af3583d5cf7/artifacts
+user_id: null
+version: 3

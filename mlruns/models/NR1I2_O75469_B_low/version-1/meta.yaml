@@ -1,0 +1,15 @@
+creation_timestamp: 1763564384657
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763564384657
+model_id: m-04eb9320904c4d4c98273a333e61ba02
+name: NR1I2_O75469_B_low
+run_id: 7a4371c0433c4a9dbee11b8ea0cbb2ff
+run_link: null
+source: models:/m-04eb9320904c4d4c98273a333e61ba02
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-04eb9320904c4d4c98273a333e61ba02/artifacts
+user_id: null
+version: 1

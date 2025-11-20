@@ -1,0 +1,15 @@
+creation_timestamp: 1763600800832
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763600800832
+model_id: m-5efab8f6a0cb4cc6a5896408b1787da2
+name: CHRM3_P20309_B_medium
+run_id: d5ef7ba30bb74ae38d33688941756123
+run_link: null
+source: models:/m-5efab8f6a0cb4cc6a5896408b1787da2
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-5efab8f6a0cb4cc6a5896408b1787da2/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,15 @@
+creation_timestamp: 1763575755888
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763575755888
+model_id: m-ceef55c3260f43299c8d1f2b8d50da04
+name: ADRA1A_P35348_B_high
+run_id: 2bd032a6446c430690f2f7684a19206e
+run_link: null
+source: models:/m-ceef55c3260f43299c8d1f2b8d50da04
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-ceef55c3260f43299c8d1f2b8d50da04/artifacts
+user_id: null
+version: 1

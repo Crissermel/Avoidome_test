@@ -1,0 +1,15 @@
+creation_timestamp: 1763597835789
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763597835789
+model_id: m-993ff22d4bd2453e91aa65d354d65ecb
+name: CHRM2_P08172_A
+run_id: a3e139ac015a40e9b2f073535f648f6d
+run_link: null
+source: models:/m-993ff22d4bd2453e91aa65d354d65ecb
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-993ff22d4bd2453e91aa65d354d65ecb/artifacts
+user_id: null
+version: 1

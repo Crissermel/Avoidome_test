@@ -1,0 +1,10 @@
+artifact_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-5c7a12dcc3ef4700a9823d8e0dc1e375/artifacts
+creation_timestamp: 1763570189881
+experiment_id: '753783880439027731'
+last_updated_timestamp: 1763570191957
+model_id: m-5c7a12dcc3ef4700a9823d8e0dc1e375
+model_type: null
+name: model
+source_run_id: ee01edbba1be4baca0be1a6827408023
+status: 2
+status_message: null

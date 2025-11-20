@@ -1,0 +1,15 @@
+creation_timestamp: 1763563519958
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563519958
+model_id: m-732e3beae51c44cda4d551dfb564b489
+name: CYP3A4_P08684_B_low
+run_id: 27e661701dfe4a76ac58ae6d538adc6a
+run_link: null
+source: models:/m-732e3beae51c44cda4d551dfb564b489
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-732e3beae51c44cda4d551dfb564b489/artifacts
+user_id: null
+version: 1

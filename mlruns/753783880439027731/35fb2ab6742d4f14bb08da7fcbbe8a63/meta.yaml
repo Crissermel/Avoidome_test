@@ -1,0 +1,14 @@
+artifact_uri: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/35fb2ab6742d4f14bb08da7fcbbe8a63/artifacts
+end_time: 1763574360641
+entry_point_name: ''
+experiment_id: '753783880439027731'
+lifecycle_stage: active
+run_id: 35fb2ab6742d4f14bb08da7fcbbe8a63
+run_name: SLC6A3_Q01959_B_high
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763574297165
+status: 3
+tags: []
+user_id: serramelendezcsm

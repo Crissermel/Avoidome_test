@@ -1,0 +1,15 @@
+creation_timestamp: 1763563379377
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563379377
+model_id: m-1a0cede666f948c8a58a8ebcbfb28e14
+name: CYP2D6_P10635_A
+run_id: ea83551af1ae48fcb1dc470e726932e1
+run_link: null
+source: models:/m-1a0cede666f948c8a58a8ebcbfb28e14
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-1a0cede666f948c8a58a8ebcbfb28e14/artifacts
+user_id: null
+version: 1

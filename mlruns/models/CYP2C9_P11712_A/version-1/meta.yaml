@@ -1,0 +1,15 @@
+creation_timestamp: 1763563239628
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563239628
+model_id: m-ac765cd6a9e143f89f9b0853155a6cf5
+name: CYP2C9_P11712_A
+run_id: 1dbca2346e2e456689c18444875129c8
+run_link: null
+source: models:/m-ac765cd6a9e143f89f9b0853155a6cf5
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-ac765cd6a9e143f89f9b0853155a6cf5/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/4d800012f99b49ae928f697f4d41a4ae/artifacts
+end_time: 1763574272714
+entry_point_name: ''
+experiment_id: '753783880439027731'
+lifecycle_stage: active
+run_id: 4d800012f99b49ae928f697f4d41a4ae
+run_name: SLC6A4_P31645_B_low
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763574067393
+status: 3
+tags: []
+user_id: serramelendezcsm

@@ -1,0 +1,15 @@
+creation_timestamp: 1763563331301
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563331301
+model_id: m-dfffe7ef21814966894c594b3149560c
+name: CYP2C19_P33261_B_medium
+run_id: 0812bf1848124aeeaf3cb293bfb8f5aa
+run_link: null
+source: models:/m-dfffe7ef21814966894c594b3149560c
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-dfffe7ef21814966894c594b3149560c/artifacts
+user_id: null
+version: 1

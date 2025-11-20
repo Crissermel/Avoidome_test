@@ -38,4 +38,9 @@ chemprop_aggregation: "norm"  # Aggregation type: "mean" or "norm"
 chemprop_depth: 5  # Message passing depth
 chemprop_bias: true  # Use bias in layers
 
+# MLflow configuration
+mlflow_enabled: true  # Set to false to disable MLflow tracking
+# mlflow_tracking_uri: "file:///path/to/mlruns"  # Optional: custom tracking URI (defaults to ./mlruns)
+# mlflow_experiment_name: "AQSE_3C_RandomForest"  # Optional: experiment name (auto-generated if not set)
+
 

@@ -1,0 +1,22 @@
+artifact_path: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-cf0e5f369de94f508ffecd508147ba56/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.12
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+mlflow_version: 3.5.1
+model_id: m-cf0e5f369de94f508ffecd508147ba56
+model_size_bytes: 1156627
+model_uuid: m-cf0e5f369de94f508ffecd508147ba56
+prompts: null
+run_id: 494675ce828e4c6585ead183261d401d
+utc_time_created: '2025-11-19 14:39:43.246898'

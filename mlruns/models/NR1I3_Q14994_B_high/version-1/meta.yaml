@@ -1,0 +1,15 @@
+creation_timestamp: 1763564228035
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763564228035
+model_id: m-7dbf1a35d06f493cabc34096ecf1f34d
+name: NR1I3_Q14994_B_high
+run_id: bd12f62f6ef94d6f93d958bb154e8a3e
+run_link: null
+source: models:/m-7dbf1a35d06f493cabc34096ecf1f34d
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-7dbf1a35d06f493cabc34096ecf1f34d/artifacts
+user_id: null
+version: 1

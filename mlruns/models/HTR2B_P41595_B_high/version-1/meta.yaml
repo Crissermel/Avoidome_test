@@ -1,0 +1,15 @@
+creation_timestamp: 1763564780746
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763564780746
+model_id: m-5705d6faf33345ef9351ddb455456100
+name: HTR2B_P41595_B_high
+run_id: f04252f6f56d40cfa9a11ec7ba9294c1
+run_link: null
+source: models:/m-5705d6faf33345ef9351ddb455456100
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-5705d6faf33345ef9351ddb455456100/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,15 @@
+creation_timestamp: 1763563411841
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563411841
+model_id: m-8a8c4307f73c44baa0b27c1878d015a4
+name: CYP2D6_P10635_B_low
+run_id: ddbbee46db4e4b43b26fc16ef6fceea1
+run_link: null
+source: models:/m-8a8c4307f73c44baa0b27c1878d015a4
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-8a8c4307f73c44baa0b27c1878d015a4/artifacts
+user_id: null
+version: 1

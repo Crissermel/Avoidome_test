@@ -1,8 +1,5 @@
 
 """
-
-
-
 Requires: 
 micromamba activate chemprop_env
 
@@ -34,6 +31,19 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import argparse
 import os
+# MLflow imports (optional)
+try:
+    import mlflow
+    import mlflow.sklearn
+    try:
+        import mlflow.pytorch
+        MLFLOW_PYTORCH_AVAILABLE = True
+    except ImportError:
+        MLFLOW_PYTORCH_AVAILABLE = False
+    MLFLOW_AVAILABLE = True
+except ImportError:
+    MLFLOW_AVAILABLE = False
+    MLFLOW_PYTORCH_AVAILABLE = False
 
 # Suppress RDKit deprecation warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
@@ -1758,6 +1768,9 @@ class AQSE3CWorkflow:
         results_dir = Path(config.get("output_dir", ".")) / f"results_{model_type}"
         self.model_reporter = ModelReporter(results_dir)
         
+        # Initialize MLflow
+        self._setup_mlflow(config, model_type)
+        
         # Load data
         self.targets = self.avoidome_loader.load_avoidome_targets()
         self.similarity_loader.load_similarity_results()
@@ -1776,6 +1789,58 @@ class AQSE3CWorkflow:
         self.output_dir.mkdir(exist_ok=True)
         
         self.results = []
+    
+    def _setup_mlflow(self, config: Dict[str, Any], model_type: str):
+        """
+        Setup MLflow tracking
+        
+        Args:
+            config: Configuration dictionary
+            model_type: Model type (e.g., 'random_forest', 'chemprop')
+        """
+        # Check if MLflow is available
+        if not MLFLOW_AVAILABLE:
+            self.logger.info("MLflow is not installed. MLflow tracking will be disabled.")
+            self.mlflow_enabled = False
+            return
+        
+        # Get MLflow configuration from config or use defaults
+        mlflow_tracking_uri = config.get("mlflow_tracking_uri", None)
+        mlflow_experiment_name = config.get("mlflow_experiment_name", f"AQSE_3C_{model_type}")
+        mlflow_enabled = config.get("mlflow_enabled", True)
+        
+        self.mlflow_enabled = mlflow_enabled
+        
+        if not mlflow_enabled:
+            self.logger.info("MLflow tracking is disabled")
+            return
+        
+        try:
+            # Set tracking URI if provided
+            if mlflow_tracking_uri:
+                mlflow.set_tracking_uri(mlflow_tracking_uri)
+                self.logger.info(f"MLflow tracking URI set to: {mlflow_tracking_uri}")
+            
+            # Create or get experiment
+            try:
+                experiment_id = mlflow.create_experiment(mlflow_experiment_name)
+                self.logger.info(f"Created MLflow experiment: {mlflow_experiment_name} (ID: {experiment_id})")
+            except Exception:
+                # Experiment already exists
+                experiment = mlflow.get_experiment_by_name(mlflow_experiment_name)
+                if experiment:
+                    experiment_id = experiment.experiment_id
+                    self.logger.info(f"Using existing MLflow experiment: {mlflow_experiment_name} (ID: {experiment_id})")
+                else:
+                    raise
+            
+            self.mlflow_experiment_name = mlflow_experiment_name
+            self.mlflow_experiment_id = experiment_id
+            self.logger.info(f"MLflow tracking initialized for experiment: {mlflow_experiment_name}")
+            
+        except Exception as e:
+            self.logger.warning(f"Failed to initialize MLflow: {e}. Continuing without MLflow tracking.")
+            self.mlflow_enabled = False
     
     def _ensure_umap(self):
         try:
@@ -2558,7 +2623,7 @@ class AQSE3CWorkflow:
         uniprot_id: Optional[str] = None
     ) -> Dict[str, Any]:
         """
-        Train model using modular trainer with comprehensive reporting
+        Train model using modular trainer with comprehensive reporting and MLflow tracking
         
         Args:
             train_df: Training DataFrame
@@ -2570,6 +2635,25 @@ class AQSE3CWorkflow:
         Returns:
             Dictionary with training results
         """
+        # Prepare MLflow run name and tags
+        if not uniprot_id:
+            uniprot_id = protein_name if protein_name else "unknown"
+        
+        run_name = f"{protein_name}_{uniprot_id}_{model_type}"
+        if threshold:
+            run_name += f"_{threshold}"
+        
+        # Start MLflow run if enabled
+        mlflow_run_active = False
+        if self.mlflow_enabled:
+            try:
+                mlflow.set_experiment(self.mlflow_experiment_name)
+                mlflow.start_run(run_name=run_name)
+                mlflow_run_active = True
+            except Exception as e:
+                self.logger.warning(f"Failed to start MLflow run: {e}. Continuing without MLflow.")
+                mlflow_run_active = False
+        
         try:
             # Train model using the configured trainer
             train_results = self.model_trainer.train(
@@ -2581,6 +2665,8 @@ class AQSE3CWorkflow:
             
             # Check if training was successful
             if train_results['status'] != 'success':
+                if mlflow_run_active:
+                    mlflow.end_run(status="FAILED")
                 return train_results
             
             # Extract results from trainer
@@ -2593,8 +2679,6 @@ class AQSE3CWorkflow:
             metrics = self.model_reporter.calculate_metrics(y_true, y_pred, y_prob)
             
             # Save model
-            if not uniprot_id:
-                uniprot_id = protein_name if protein_name else "unknown"
             model_path = self.model_reporter.save_model(
                 model, protein_name, uniprot_id, model_type, threshold
             )
@@ -2617,6 +2701,27 @@ class AQSE3CWorkflow:
                 test_df, y_pred, protein_name, uniprot_id, model_type, y_prob, threshold, 'test'
             )
             
+            # Log to MLflow if enabled (after saving artifacts so we can log them)
+            if mlflow_run_active:
+                try:
+                    self._log_to_mlflow(
+                        model=model,
+                        metrics=metrics,
+                        train_df=train_df,
+                        test_df=test_df,
+                        protein_name=protein_name,
+                        uniprot_id=uniprot_id,
+                        model_type=model_type,
+                        threshold=threshold,
+                        train_results=train_results,
+                        metrics_path=metrics_path,
+                        predictions_path=predictions_path,
+                        train_dist_path=train_dist_path,
+                        test_dist_path=test_dist_path
+                    )
+                except Exception as e:
+                    self.logger.warning(f"Failed to log to MLflow: {e}. Continuing with model saving.")
+            
             self.logger.info(f"✓ {self.model_trainer.get_model_type_name()} training completed successfully!")
             self.logger.info(f"  Model saved: {model_path}")
             self.logger.info(f"  Metrics saved: {metrics_path}")
@@ -2636,7 +2741,7 @@ class AQSE3CWorkflow:
             except Exception as viz_e:
                 self.logger.warning(f"UMAP visualization failed: {viz_e}")
             
-            return {
+            result = {
                 'status': 'success',
                 'test_accuracy': metrics['accuracy'],
                 'test_f1_macro': metrics['f1_macro'],
@@ -2654,13 +2759,189 @@ class AQSE3CWorkflow:
                 'similar_proteins': 'N/A'  # Will be filled by caller if needed
             }
             
+            # End MLflow run successfully
+            if mlflow_run_active:
+                mlflow.end_run()
+            
+            return result
+            
         except Exception as e:
             self.logger.error(f"Error training {self.model_trainer.get_model_type_name()} model: {e}")
+            # End MLflow run with failure status
+            if mlflow_run_active:
+                mlflow.end_run(status="FAILED")
             return {
                 'status': 'error',
                 'message': str(e),
                 'model_type_name': self.model_trainer.get_model_type_name()
             }
+    
+    def _log_to_mlflow(
+        self,
+        model: Any,
+        metrics: Dict[str, Any],
+        train_df: pd.DataFrame,
+        test_df: pd.DataFrame,
+        protein_name: Optional[str],
+        uniprot_id: str,
+        model_type: str,
+        threshold: Optional[str],
+        train_results: Dict[str, Any],
+        metrics_path: str = "",
+        predictions_path: str = "",
+        train_dist_path: str = "",
+        test_dist_path: str = ""
+    ):
+        """
+        Log model, metrics, parameters, and artifacts to MLflow
+        
+        Args:
+            model: Trained model object
+            metrics: Dictionary of calculated metrics
+            train_df: Training DataFrame
+            test_df: Test DataFrame
+            protein_name: Protein name
+            uniprot_id: UniProt ID
+            model_type: Model type ('A' or 'B')
+            threshold: Threshold for Model B
+            train_results: Training results dictionary
+            metrics_path: Path to saved metrics JSON file
+            predictions_path: Path to saved predictions CSV file
+            train_dist_path: Path to saved train distribution CSV file
+            test_dist_path: Path to saved test distribution CSV file
+        """
+        # Safety check: ensure MLflow is available
+        if not MLFLOW_AVAILABLE:
+            self.logger.warning("MLflow is not available. Skipping MLflow logging.")
+            return
+        
+        # Log tags
+        tags = {
+            'protein_name': protein_name or 'unknown',
+            'uniprot_id': uniprot_id,
+            'model_type': model_type,
+            'model_type_name': train_results.get('model_type_name', self.model_trainer.get_model_type_name())
+        }
+        if threshold:
+            tags['threshold'] = threshold
+        mlflow.set_tags(tags)
+        
+        # Log parameters
+        params = {}
+        
+        # Model-specific parameters
+        if isinstance(self.model_trainer, RandomForestTrainer):
+            params['n_estimators'] = self.model_trainer.n_estimators
+            params['max_depth'] = self.model_trainer.max_depth if self.model_trainer.max_depth else 'None'
+            params['random_state'] = self.model_trainer.random_state
+            params['class_weight'] = self.model_trainer.class_weight
+        elif isinstance(self.model_trainer, ChempropTrainer):
+            params['max_epochs'] = self.model_trainer.max_epochs
+            params['batch_size'] = self.model_trainer.batch_size
+            params['n_classes'] = self.model_trainer.n_classes
+            params['include_esm'] = self.model_trainer.include_esm
+            params['val_fraction'] = self.model_trainer.val_fraction
+            params['max_lr'] = self.model_trainer.max_lr
+            params['init_lr'] = self.model_trainer.init_lr
+            params['final_lr'] = self.model_trainer.final_lr
+            params['warmup_epochs'] = self.model_trainer.warmup_epochs
+            params['ffn_num_layers'] = self.model_trainer.ffn_num_layers
+            params['hidden_size'] = self.model_trainer.hidden_size
+            params['dropout'] = self.model_trainer.dropout
+            params['activation'] = self.model_trainer.activation
+            params['aggregation'] = self.model_trainer.aggregation
+            params['depth'] = self.model_trainer.depth
+            params['bias'] = self.model_trainer.bias
+        
+        # Data parameters
+        params['n_train_samples'] = train_results.get('n_train_samples', len(train_df))
+        params['n_test_samples'] = train_results.get('n_test_samples', len(test_df))
+        params['n_features'] = train_results.get('feature_dimensions', 'N/A')
+        
+        # Convert all params to strings (MLflow requirement)
+        params = {k: str(v) for k, v in params.items()}
+        mlflow.log_params(params)
+        
+        # Log metrics
+        mlflow_metrics = {
+            'test_accuracy': metrics['accuracy'],
+            'test_precision_macro': metrics['precision_macro'],
+            'test_recall_macro': metrics['recall_macro'],
+            'test_f1_macro': metrics['f1_macro'],
+            'test_precision_weighted': metrics['precision_weighted'],
+            'test_recall_weighted': metrics['recall_weighted'],
+            'test_f1_weighted': metrics['f1_weighted']
+        }
+        
+        # Log per-class metrics
+        if 'precision_per_class' in metrics:
+            for i, label in enumerate(metrics.get('class_labels', ['Low', 'Medium', 'High'])):
+                mlflow_metrics[f'test_precision_{label.lower()}'] = metrics['precision_per_class'][i]
+                mlflow_metrics[f'test_recall_{label.lower()}'] = metrics['recall_per_class'][i]
+                mlflow_metrics[f'test_f1_{label.lower()}'] = metrics['f1_per_class'][i]
+        
+        mlflow.log_metrics(mlflow_metrics)
+        
+        # Log model
+        model_type_name = train_results.get('model_type_name', self.model_trainer.get_model_type_name())
+        registered_name = f"{protein_name}_{uniprot_id}_{model_type}" + (f"_{threshold}" if threshold else "")
+        
+        if model_type_name == "RandomForest":
+            # Create input example from test data for signature inference
+            try:
+                # Get a sample from test data for input example
+                X_test_sample = np.stack(test_df['features'].to_numpy()[:1]) if len(test_df) > 0 else None
+                input_example = X_test_sample if X_test_sample is not None else None
+            except Exception:
+                input_example = None
+            
+            # Log sklearn model with updated API
+            mlflow.sklearn.log_model(
+                sk_model=model,
+                artifact_path="model",
+                registered_model_name=registered_name,
+                input_example=input_example
+            )
+        elif model_type_name == "Chemprop" and MLFLOW_PYTORCH_AVAILABLE:
+            # Log PyTorch model (if it's a PyTorch model)
+            try:
+                # Create input example if possible
+                input_example = None
+                try:
+                    if len(test_df) > 0 and 'SMILES' in test_df.columns:
+                        # Use first SMILES as input example for Chemprop
+                        input_example = test_df['SMILES'].iloc[0] if len(test_df) > 0 else None
+                except Exception:
+                    pass
+                
+                mlflow.pytorch.log_model(
+                    pytorch_model=model,
+                    artifact_path="model",
+                    registered_model_name=registered_name,
+                    input_example=input_example
+                )
+            except Exception as e:
+                self.logger.warning(f"Failed to log Chemprop model to MLflow: {e}. Model may not be PyTorch-based.")
+        
+        # Log artifacts (if they exist)
+        try:
+            # Log metrics JSON
+            if metrics_path and Path(metrics_path).exists():
+                mlflow.log_artifact(metrics_path, "metrics")
+            
+            # Log predictions CSV
+            if predictions_path and Path(predictions_path).exists():
+                mlflow.log_artifact(predictions_path, "predictions")
+            
+            # Log class distributions
+            if train_dist_path and Path(train_dist_path).exists():
+                mlflow.log_artifact(train_dist_path, "class_distributions")
+            
+            if test_dist_path and Path(test_dist_path).exists():
+                mlflow.log_artifact(test_dist_path, "class_distributions")
+            
+        except Exception as e:
+            self.logger.warning(f"Failed to log some artifacts to MLflow: {e}")
     
     def _extract_multi_protein_features(self, df: pd.DataFrame, protein_ids: List[str], add_esmc: bool = True) -> pd.DataFrame:
         """
@@ -2750,17 +3031,34 @@ class ModelReporter:
         filepath = self.models_dir / filename
         
         try:
-            # Save model state dict (not the full model to avoid serialization issues)
-            model_data = {
-                'state_dict': model.state_dict(),
-                'model_config': {
-                    'protein_name': protein_name,
-                    'uniprot_id': uniprot_id,
-                    'model_type': model_type,
-                    'threshold': threshold,
-                    'timestamp': datetime.now().isoformat()
+            # Handle different model types
+            # For PyTorch models, save state_dict; for scikit-learn models, save the full model
+            if hasattr(model, 'state_dict'):
+                # PyTorch model - save state_dict
+                model_data = {
+                    'state_dict': model.state_dict(),
+                    'model_config': {
+                        'protein_name': protein_name,
+                        'uniprot_id': uniprot_id,
+                        'model_type': model_type,
+                        'threshold': threshold,
+                        'timestamp': datetime.now().isoformat(),
+                        'model_class': 'pytorch'
+                    }
                 }
-            }
+            else:
+                # Scikit-learn or other models - save the full model
+                model_data = {
+                    'model': model,
+                    'model_config': {
+                        'protein_name': protein_name,
+                        'uniprot_id': uniprot_id,
+                        'model_type': model_type,
+                        'threshold': threshold,
+                        'timestamp': datetime.now().isoformat(),
+                        'model_class': 'sklearn' if hasattr(model, 'predict') and hasattr(model, 'fit') else 'other'
+                    }
+                }
             
             with gzip.open(filepath, 'wb') as f:
                 pickle.dump(model_data, f)

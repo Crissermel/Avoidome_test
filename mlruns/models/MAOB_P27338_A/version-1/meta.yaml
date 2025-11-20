@@ -1,0 +1,15 @@
+creation_timestamp: 1763563826065
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563826065
+model_id: m-b09f94f1df424b3db403526a5aa4a553
+name: MAOB_P27338_A
+run_id: 3c219220657c45a98905a396bf937e80
+run_link: null
+source: models:/m-b09f94f1df424b3db403526a5aa4a553
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-b09f94f1df424b3db403526a5aa4a553/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,15 @@
+creation_timestamp: 1763593678491
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763593678491
+model_id: m-cd0468a3b5874f548efd0604a621352f
+name: CHRM1_P11229_A
+run_id: 5e4879626cb84b05831b0366b1b5ab39
+run_link: null
+source: models:/m-cd0468a3b5874f548efd0604a621352f
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-cd0468a3b5874f548efd0604a621352f/artifacts
+user_id: null
+version: 1

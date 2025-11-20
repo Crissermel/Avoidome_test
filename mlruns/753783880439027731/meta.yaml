@@ -1,0 +1,6 @@
+artifact_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731
+creation_time: 1763563062338
+experiment_id: '753783880439027731'
+last_update_time: 1763563062338
+lifecycle_stage: active
+name: AQSE_3C_random_forest

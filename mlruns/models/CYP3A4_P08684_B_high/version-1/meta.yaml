@@ -1,0 +1,15 @@
+creation_timestamp: 1763563473418
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563473418
+model_id: m-d3269560f53542798afb4172ca887dc1
+name: CYP3A4_P08684_B_high
+run_id: 32f8735fbe814095bcbcb7846d776650
+run_link: null
+source: models:/m-d3269560f53542798afb4172ca887dc1
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-d3269560f53542798afb4172ca887dc1/artifacts
+user_id: null
+version: 1

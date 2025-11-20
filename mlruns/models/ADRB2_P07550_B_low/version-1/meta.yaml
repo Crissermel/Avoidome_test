@@ -1,0 +1,15 @@
+creation_timestamp: 1763590376086
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763590376086
+model_id: m-ca4bd42c0a3241e9a6fefdce98fc4c45
+name: ADRB2_P07550_B_low
+run_id: 9cce62f050de4486929a524099f91892
+run_link: null
+source: models:/m-ca4bd42c0a3241e9a6fefdce98fc4c45
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-ca4bd42c0a3241e9a6fefdce98fc4c45/artifacts
+user_id: null
+version: 1

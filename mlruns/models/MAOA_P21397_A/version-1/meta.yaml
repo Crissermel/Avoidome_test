@@ -1,0 +1,15 @@
+creation_timestamp: 1763563616272
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563616272
+model_id: m-8387fc6935fe42d799992b12fade8ef4
+name: MAOA_P21397_A
+run_id: fe9fab2a6ab6409eadebe046b523de50
+run_link: null
+source: models:/m-8387fc6935fe42d799992b12fade8ef4
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-8387fc6935fe42d799992b12fade8ef4/artifacts
+user_id: null
+version: 1

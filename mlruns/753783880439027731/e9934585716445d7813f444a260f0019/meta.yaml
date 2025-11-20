@@ -1,0 +1,14 @@
+artifact_uri: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/e9934585716445d7813f444a260f0019/artifacts
+end_time: 1763563307921
+entry_point_name: ''
+experiment_id: '753783880439027731'
+lifecycle_stage: active
+run_id: e9934585716445d7813f444a260f0019
+run_name: CYP2C9_P11712_B_low
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763563268780
+status: 3
+tags: []
+user_id: serramelendezcsm

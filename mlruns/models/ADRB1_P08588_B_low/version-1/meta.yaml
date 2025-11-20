@@ -1,0 +1,15 @@
+creation_timestamp: 1763586710463
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763586710463
+model_id: m-38846f5d16334c9a8c2d3a62dac2e9d3
+name: ADRB1_P08588_B_low
+run_id: 4c858149b41b4364920e0edb0890b466
+run_link: null
+source: models:/m-38846f5d16334c9a8c2d3a62dac2e9d3
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-38846f5d16334c9a8c2d3a62dac2e9d3/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,15 @@
+creation_timestamp: 1763563593188
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563593188
+model_id: m-3cef83d4ffe042d79ca6e320d1616001
+name: XDH_P47989_B_medium
+run_id: eefaeb5c6bfb4caf8db6bf259f8a95dd
+run_link: null
+source: models:/m-3cef83d4ffe042d79ca6e320d1616001
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-3cef83d4ffe042d79ca6e320d1616001/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,15 @@
+creation_timestamp: 1763569516906
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763569516906
+model_id: m-f09eace2727b449aa35c52685e00cc38
+name: ALDH1A1_P00352_B_low
+run_id: 090f6070df6b4b41ac3d0a8e1491ce23
+run_link: null
+source: models:/m-f09eace2727b449aa35c52685e00cc38
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-f09eace2727b449aa35c52685e00cc38/artifacts
+user_id: null
+version: 2

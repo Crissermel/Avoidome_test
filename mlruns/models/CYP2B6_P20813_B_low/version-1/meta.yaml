@@ -1,0 +1,15 @@
+creation_timestamp: 1763563203828
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763563203828
+model_id: m-ce6b2477eac348c7ae95cc5ed7aadc1d
+name: CYP2B6_P20813_B_low
+run_id: 746a3ecc67ea4b8bb5ebc172ce78272f
+run_link: null
+source: models:/m-ce6b2477eac348c7ae95cc5ed7aadc1d
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-ce6b2477eac348c7ae95cc5ed7aadc1d/artifacts
+user_id: null
+version: 1

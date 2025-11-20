@@ -1,0 +1,15 @@
+creation_timestamp: 1763564054197
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1763564054197
+model_id: m-b6747a51e0bb415a906d9373a011401e
+name: HSD11B1_P28845_A
+run_id: 3af812b2bfee406c818bc8b769d46d88
+run_link: null
+source: models:/m-b6747a51e0bb415a906d9373a011401e
+status: READY
+status_message: null
+storage_location: file:///home/serramelendezcsm/RA/Avoidome/test_AQSE_3c_wf/mlruns/753783880439027731/models/m-b6747a51e0bb415a906d9373a011401e/artifacts
+user_id: null
+version: 1
